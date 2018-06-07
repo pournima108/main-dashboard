@@ -16,6 +16,6 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Start the server
+//Start the server
 app.listen(port);
 console.log("Server has booted up successfully at PORT : " + port);
