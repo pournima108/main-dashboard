@@ -492,7 +492,7 @@ export class DashboardDefaultComponent implements OnInit {
               // var map = this.mapArray;
               var context = this;
               let strongest = this.message.results.strongestImpact;
-  
+  //
               this.strongestImpactCity = strongest.city;
               this.strongestLocation = strongest.name; 
               let lat = strongest.lat;
