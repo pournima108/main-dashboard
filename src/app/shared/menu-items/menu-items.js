@@ -453,20 +453,7 @@ var MENUITEMS = [
             }
         ]
     }, {
-        label: 'Support',
-        // main: [
-        //     {
-        //         state: 'documentation',
-        //         name: 'Documentation',
-        //         type: 'link',
-        //         icon: 'ti-file'
-        //     }, {
-        //         state: 'submit-issue',
-        //         name: 'Submit Issue',
-        //         type: 'link',
-        //         icon: 'ti-layout-list-post'
-        //     }
-        // ]
+        label: 'Support'
     }
 ];
 var MenuItems = (function () {

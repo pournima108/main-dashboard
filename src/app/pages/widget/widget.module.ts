@@ -12,24 +12,6 @@ export const WidgetRoutes: Routes = [{
     icon: 'icofont-speed-meter bg-c-blue',
     status: false
   },
-  children: [
-    {
-      path: 'static',
-      loadChildren: './widget-static/widget-static.module#WidgetStaticModule'
-    },
-    {
-      path: 'data',
-      loadChildren: './widget-data/widget-data.module#WidgetDataModule'
-    },
-    {
-      path: 'chart',
-      loadChildren: './widget-chart/widget-chart.module#WidgetChartModule'
-    },
-    {
-      path: 'advanced',
-      loadChildren: './widget-advance/widget-advance.module#WidgetAdvanceModule'
-    }
-  ]
 }];
 
 @NgModule({

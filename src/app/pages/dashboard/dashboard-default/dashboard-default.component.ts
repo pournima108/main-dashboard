@@ -44,7 +44,7 @@ export class DashboardDefaultComponent implements OnInit {
   public value4;
   public timer: any;
   public timer2: any;
-  // city: Array<CityDetails>;
+
   city: any;
   value5;
   searchCity: string;
@@ -138,10 +138,6 @@ export class DashboardDefaultComponent implements OnInit {
         show: false,
       }
     });
-    // setInterval(() => {
-    //   plot.setData([getRandomData()]);
-    //   plot.draw();
-    // }, );
 
 
     AmCharts.makeChart('fees-collection', {
@@ -450,18 +446,18 @@ export class DashboardDefaultComponent implements OnInit {
       nowRange: 75,
       targetRange: 100
     });
-    // setInterval(function() {
-    //   let range1 = (Math.floor(Math.random() * (100)) + 1);
-    //   let range2 = (Math.floor(Math.random() * (50)) + 51);
-    //   $('.sadball').createWaterBall('updateRange', range2);
-    //   $('.happyball').createWaterBall('updateRange', range1);
-    // }, );
+    setInterval(function() {
+        let range1 = (96);
+        let range2 = (4);
+        $('.sadball').createWaterBall('updateRange', range2);
+        $('.happyball').createWaterBall('updateRange', range1);
+      }, 5000);
   }
   
   myFunction(city = '') {
-    console.log(city + "myFunction()");
+
     const myFunctionContext = this;
-    // this.alive = true;
+
     const context = this;
     if (city == '') {
       IntervalObservable.create(3000)
@@ -469,30 +465,20 @@ export class DashboardDefaultComponent implements OnInit {
       .subscribe(() => {
         this.myHttp.getData(city)
           .subscribe(data => {
-            console.log("data is coming");
-            console.log(data);
+            
             this.message = data;
             if (this.message && this.message.results.strongestImpact && this.message.results.strongestImpact.suggestions) {
-              // this.randomAnswer = this.message.results[Math.floor(Math.random() * this.message.results.length)];
-              //console.log(this.message[Math.floor(Math.random() * this.message.results.length)])
-              // console.log(Math.random() * 10);
-              // console.log(this.randomAnswer.measurements[this.i] + "~~~~");
-              // var int i;
-              // if (this.randomAnswer) {
-  
-                console.log("INSIDE  ZONE  INNER >>>>>>>>>>>>>>>>>>>>>>>>");
-  
+              
               let res = this.message.results.measurements;
-              // console.log("Inside : " + res);
+              
               this.coAverage = res.co;
               this.so2Average = res.so2;
               this.no2Average = res.no2;
               this.pm25Average = res.pm25;
-              // console.log(typeof this.mapArray);
-              // var map = this.mapArray;
+             
               var context = this;
               let strongest = this.message.results.strongestImpact;
-  //
+  
               this.strongestImpactCity = strongest.city;
               this.strongestLocation = strongest.name; 
               let lat = strongest.lat;
@@ -530,14 +516,13 @@ export class DashboardDefaultComponent implements OnInit {
   
               this.aqi = this.message.results.aqi;
               this.risk2 = this.message.results.strongestImpact.suggestions.risk;
-             // this.risk2 = status.charAt(0).toUpperCase +status.slice(1);
              this.risk1=this.risk2.charAt(0).toUpperCase() + this.risk2.slice(1);
              console.log(this.risk1)
               this.status = this.message.results.strongestImpact.suggestions.status;
               this.status1 =this.status.charAt(0).toUpperCase()  + this.status.slice(1);
               console.log(this.status1);
               
-            // console.log(this.mapArray);
+            
               AmCharts.makeChart('world-map-vititors', {
                 'type': 'map',
                 'projection': 'winkel3',
@@ -603,17 +588,12 @@ export class DashboardDefaultComponent implements OnInit {
              
             }
   
-            console.log("INSIDE  ZONE  END >>>>>>>>>>>>>>>>>>>>>>>>");
-          // });
+           
           });
       });
-        console.log("Message Object: " + this.message);
+       
           
-          // myFunctionContext.zone.run(() => {
-          // console.log(JSON.stringify(this.message));
-            console.log("INSIDE  ZONE  >>>>>>>>>>>>>>>>>>>>>>>>");
-            console.log("CITY: "+ city);
-            console.log("CONTEXT CITY: "+ myFunctionContext.city);
+          
     } else {
       this.cityAlive = true;
       IntervalObservable.create(3000)
@@ -621,21 +601,16 @@ export class DashboardDefaultComponent implements OnInit {
       .subscribe(() => {
         this.myHttp.getData(context.city)
           .subscribe(data => {
-            console.log("data is coming");
-            console.log(data);
+  
             this.message = data;
             if (this.message && this.message.results.strongestImpact && this.message.results.strongestImpact.suggestions) {
-              
-                console.log("INSIDE  ZONE  INNER >>>>>>>>>>>>>>>>>>>>>>>>");
-  
               let res = this.message.results.measurements;
-              // console.log("Inside : " + res);
+           
               this.coAverage = res.co;
               this.so2Average = res.so2;
               this.no2Average = res.no2;
               this.pm25Average = res.pm25;
-              // console.log(typeof this.mapArray);
-              // var map = this.mapArray;
+    
               var context = this;
               let strongest = this.message.results.strongestImpact;
   
@@ -677,13 +652,12 @@ export class DashboardDefaultComponent implements OnInit {
   
               this.aqi = this.message.results.aqi;
               this.risk2 = this.message.results.strongestImpact.suggestions.risk;
-              this.risk1=this.risk2.charAt(0).toUpperCase()+this.risk1.slice(1);
+              this.risk1=this.risk2.charAt(0).toUpperCase() + this.risk1.slice(1);
               console.log(this.risk1)
                this.status = this.message.results.strongestImpact.suggestions.status;
                this.status1 =this.status.charAt(0).toUpperCase() + this.status.slice(1);
                console.log(this.status1);
-              //this.status=this.status.toUpperCase();  
-                          // console.log(this.mapArray);
+             
               AmCharts.makeChart('world-map-vititors', {
                 'type': 'map',
                 'projection': 'winkel3',
@@ -749,28 +723,20 @@ export class DashboardDefaultComponent implements OnInit {
              
             }
   
-            console.log("INSIDE  ZONE  END >>>>>>>>>>>>>>>>>>>>>>>>");
-          // });
           });
       });
-        console.log("Message Object: " + this.message);
-          
-          // myFunctionContext.zone.run(() => {
-          // console.log(JSON.stringify(this.message));
-            console.log("INSIDE  ZONE  >>>>>>>>>>>>>>>>>>>>>>>>");
-            console.log("CITY: "+ city);
-            console.log("CONTEXT CITY: "+ myFunctionContext.city);
+       
 
     }
   }
 
   resetDashboard(callback) {
-    console.log("dashboard resetted");
+    
 
     const context = this;
 
     this.zone.run(() => {
-   // setTimeout(function(){
+
       
       document.getElementById('world-map-vititors').innerHTML = "";
       document.getElementById('world-map-markers').innerHTML = "";
@@ -778,7 +744,7 @@ export class DashboardDefaultComponent implements OnInit {
       this.alive = false;
       this.cityAlive = false;
       this.city = '';
-      // console.log(this.coAverage);
+
       this.coAverage = "--";
       this.so2Average =  "--";
       this.no2Average =  "--";
@@ -799,35 +765,32 @@ export class DashboardDefaultComponent implements OnInit {
       this.aqi =  "--";
       this.mapArray = [];
       this.latLongArray = [];
-      // context.searchCityData(context.city);
-      callback("RESET Done~~~~~~~~~~~~");
+     
+      callback("RESET");
 
-   //   },0)
     });
   }
 
   getDataByCity(city) {
-    console.log("getDataByCIty()");
-    // clearInterval(this.timer);
+    
     const context = this;
-    // this.clearAll();
+   
     this.resetDashboard(function(res) {
-      console.log("dashboard reset");
+      
       context.searchCity = city;
       context.city = city;
     })
-    // this.alive = true;
+    
     setTimeout(() => {
       this.myFunction(context.city);
     }, 10)
 
     console.log(city);
-    //this.city = '';
+   
   }
 
   clearAll() {
-    console.log("hello")
-    console.log(this.timer);
+   
     clearInterval(this.timer);
     this.timer = undefined;
   }
@@ -838,18 +801,13 @@ export class DashboardDefaultComponent implements OnInit {
   }
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent, city) { 
-    // this.key = event.key;
-    // console.log(event.keyCode);
-    // console.log(this.city)
+
     if(event.keyCode == 13) {
       this.getDataByCity(this.city);
     }
     
   }
 
-  // getCity() {
-  //   this.city = this.thisCity;
-  // }
 
   onTaskStatusChange(event) {
     const parentNode = (event.target.parentNode.parentNode);
