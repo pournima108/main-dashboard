@@ -652,7 +652,7 @@ export class DashboardDefaultComponent implements OnInit {
   
               this.aqi = this.message.results.aqi;
               this.risk2 = this.message.results.strongestImpact.suggestions.risk;
-              this.risk1=this.risk2.charAt(0).toUpperCase() + this.risk1.slice(1);
+              this.risk1=this.risk2.charAt(0).toUpperCase() + this.risk2.slice(1);
               console.log(this.risk1)
                this.status = this.message.results.strongestImpact.suggestions.status;
                this.status1 =this.status.charAt(0).toUpperCase() + this.status.slice(1);
