@@ -93,15 +93,15 @@ const MENUITEMS = [
         icon: 'ti-file',
         target: true
       },*/
-      {
-        state: 'submit-issue',
-        short_label: 'S',
-        external: 'https://goo.gl/forms/KNNd8iS5lmgBRUNz1',
-        name: 'Submit Issue',
-        type: 'external',
-        icon: 'ti-layout-list-post',
-        target: true
-      },
+      // {
+      //   state: 'submit-issue',
+      //   short_label: 'S',
+      //   external: 'https://goo.gl/forms/KNNd8iS5lmgBRUNz1',
+      //   name: 'Submit Issue',
+      //   type: 'external',
+      //   icon: 'ti-layout-list-post',
+      //   target: true
+      // },
       {
         state: 'api-console',
         short_label: 'A',

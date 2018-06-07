@@ -59,7 +59,9 @@ export class DashboardDefaultComponent implements OnInit {
   strongestLocation;
   precautions;
   healthStatus;
+  healthStatus1;
   risk;
+  risk3;
   latLongArray = [];
   no2Concentration;
   so2Concentration;
@@ -497,8 +499,9 @@ export class DashboardDefaultComponent implements OnInit {
               let long = strongest.long;
               this.precautions = this.message.results.suggestions.precaution;
               this.healthStatus = this.message.results.suggestions.status;
+              this.healthStatus1=this.healthStatus.charAt(0).toUpperCase()+this.healthStatus.slice(1);
               this.risk = this.message.results.suggestions.risk;
-  
+               this.risk3 =this.risk.charAt(0).toUpperCase()+this.risk.slice(1);
               this.message.results.sensors.forEach(function(element) {
                 context.mapArray.push({
                     'svgPath': context.targetSVG,
@@ -642,7 +645,9 @@ export class DashboardDefaultComponent implements OnInit {
               let long = strongest.long;
               this.precautions = this.message.results.suggestions.precaution;
               this.healthStatus = this.message.results.suggestions.status;
+              this.healthStatus1=this.healthStatus.charAt(0).toUpperCase()+ this.healthStatus.slice(1);
               this.risk = this.message.results.suggestions.risk;
+               this.risk3 =this.risk.charAt(0).toUpperCase()+this.risk.slice(1);
   
               this.message.results.sensors.forEach(function(element) {
                 context.mapArray.push({
