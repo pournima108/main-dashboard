@@ -1,7 +1,6 @@
-// var DynamoDriver = require('./DynamoDriver')
+
 var AWS = require('aws-sdk');
 AWS.config.update({region: 'us-east-1'});
-// var PayLoadFormator = require('./PayLoadFormator');
 var aqiC = require('./AirQualityMeasurer');
 
 class Latest{
@@ -14,35 +13,6 @@ class Latest{
     var aqi = new aqiC();
 
     var client = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
-    // var DriverOb = new DynamoDriver();
-    
-    //adding in data from PayloadFormator 
-   /* var formatorOb  = new PayLoadFormator();
-    
-    formatorOb.Collector((err,data)=>{
-        if(err){
-            console.log(err)
-            callback(err, null);
-        
-        }else{
-            var payload= formatorOb.Formator(JSON.parse(data),"INDIA_AQIDATA");
-            console.log("FORMATED DATA",payload);
-                
-            DriverOb.WriteMultiple(client,payload,(err,result)=>{
-                if(err){
-                    console.log(err);
-                    callback(err,null);
-                }else{
-                    console.log(result);
-                    callback(null, "success");
-                }
-            });
-           
-            
-        }
-    });*/
-    
-    
     var sinceOpt = Date.now() - 1*60000; //replace this with query params, else default to 1
     var untilOpt = Date.now();
     console.log("Query : " + query + ", Since : " + since + ", Until : " + until);
@@ -76,11 +46,6 @@ class Latest{
         expAttrVals[":a"] = cityName;
         filterExp = 'city = :a AND #time_stamp > :s AND #time_stamp < :u';
     }
-
-
-    // console.log("FILTEREXP: "+ filterExp);
-    // console.log("expAttrVals");
-    // console.log(expAttrVals);
     
     var params = {
         TableName: process.env.TABLENAME,
@@ -95,42 +60,6 @@ class Latest{
   
     };
  
- 
-    /*
-    query block::: UNCOMMENT THIS SECTION, COMMENT ABOVE AND CHANGE SCAN TO QUERY DOWN
-        var expAttrVals = {
-        ":s": sinceOpt,
-        // ":u": untilOpt,
-        //":c": "IN"
-    };
-    
-   // var filterExp = '#time_stamp > :s AND #time_stamp < :u AND country = :c';
-    var filterExp = '#time_stamp > :s AND country = :c';
-    
-    if(cityName != "") {
-        expAttrVals[":a"] = cityName;
-        //filterExp = 'city = :a AND #time_stamp > :s AND #time_stamp < :u AND country = :c';
-        filterExp = 'city = :a AND #time_stamp > :s';
-    }
-
-
-    // console.log("FILTEREXP: "+ filterExp);
-    // console.log("expAttrVals");
-    // console.log(expAttrVals);
-    
-    var params = {
-        TableName: "INDIA_AQIDATA",
-        //FilterExpression: filterExp,
-        IndexName: "city-index",
-        KeyConditionExpression: filterExp,
-        ExpressionAttributeValues: expAttrVals,
-        ExpressionAttributeNames: {
-            "#time_stamp": "timestamp"
-          }
-   
-  
-    };
-    */
     var items = [];
     var iterations = 0;
     var scanExecute = function(sparams, callback) {
