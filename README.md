@@ -71,13 +71,12 @@ $ git clone https://github.com/pournima108/main-dashboard.git
 $ cd main-dashboard
 $ npm install
 $ cd dist/
-$ node index.js &
+$ forever start -a -o ./out.log -e ./err.log --uid 'Dashboard' app.js
 ```
 To Kill Application Startup or if PORT 5000 in USE, follow the steps below :
 
 ```sh
-$ netstat -plten
-$ kill -9 *PIDNUMBER
+$ forever stop Dashboard
 ```
 
 For AWS Configuration, upload the Cloudformation template JSON file inside this repository. Click on this image to go to AWS Cloudformation.
@@ -87,31 +86,6 @@ For AWS Configuration, upload the Cloudformation template JSON file inside this 
 * Choose Create Stack
 * Import the erospace.json file of this repository from your local system
 * Hit Next and go ahead to create the Stack
-* Then Goto DYNAMODB and create a TABLE named "INDIA_AQIDATA_TECHGIG" with the following settings.
-* SET Primary Key as "id" as String
-* SET Secondary Key as "timestamp" as Number
-* SET Read Capacity Units and Write Capacity units both to 5.
-* Uncheck Default settings for Autoscaling
-* Set Encryption at Rest as active in the checkbox.
-* Please make sure to set autoscaling as given below in the image.
-* Create the Table
-
-[![](https://preview.ibb.co/iYnXCo/Auto_Scaling.png)](https://preview.ibb.co/iYnXCo/Auto_Scaling.png)
-
-* Now Goto Cloudwatch, Goto Rules, Create a new Rule triggering on a schedule of 1 minute.
-* Click Add Targets, and attach the 5 Lambdas created from CloudFormation Template.
-* Enable the Trigger
-* This will keep pushing data to DynamoDB table every 1 minute
-* Now GoTo API Gateway, Create a new EDGE Optimized API and make the following methods.
-* Make sure to point each method above to Lambda called "EroSpace_Rest_Logic" with Lambda Proxy Enabled and CORS enabled.
-
-[![](https://preview.ibb.co/kshFXo/1se1.png)](https://preview.ibb.co/kshFXo/1se1.png)
-[![](https://preview.ibb.co/iRK9Q8/CORS.png)](https://preview.ibb.co/iRK9Q8/CORS.png)
-
-* After methods are created, Create a Basic Plan and Generate a Key for it
-* Go to respective methods which you want Authorization Turned on and enable them.
-* Deploy the API with a Stage.
-* Additional Throttling and API-Cache options are available. Enable according to requirement.
 
 
 ### Thanks Techgig2018 : @teamgeeksquad
